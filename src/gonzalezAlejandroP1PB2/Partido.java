@@ -8,13 +8,13 @@ import java.util.TreeSet;
 import exepciones.JugadorNoEncontradoException;
 
 public class Partido {
-    
+
     private HashSet<Jugador> local = new HashSet<Jugador>();
     private HashSet<Jugador> visitante = new HashSet<Jugador>();
     private TreeSet<Gol> goles = new TreeSet<Gol>();
     private String localNombre;
-    private String visitanteNombre; 
-    
+    private String visitanteNombre;
+
     public Partido(String local, String visitante) {
 	super();
 	this.localNombre = local;
@@ -22,61 +22,61 @@ public class Partido {
     }
 
     public String getLocal() {
-        return localNombre;
+	return localNombre;
     }
 
     public String getVisitante() {
-        return visitanteNombre;
+	return visitanteNombre;
     }
 
     public void anotarGol(Jugador jugador, Integer minuto, String equipo) throws JugadorNoEncontradoException {
 
-	if(local.contains(jugador)==false || visitante.contains(jugador)==false) {
+	//Si ninguno contiene al Jugador, tiro la excepcion
+	if (!local.contains(jugador) && !visitante.contains(jugador)) {
 	    throw new JugadorNoEncontradoException();
 	}
-	
+
 	Gol gol;
-	if(equipo.equals(localNombre)) {
-	    gol = new Gol(jugador,minuto,"local");
-	}else{
-	    gol = new Gol(jugador,minuto,"visitante");
+	if (equipo.equals(localNombre)) {
+	    gol = new Gol(jugador, minuto, "local");
+	} else {
+	    gol = new Gol(jugador, minuto, "visitante");
 	}
-	
-	
+
 	goles.add(gol);
-	
+
     }
 
-
     public void agregarJugador(Jugador jugador, String equipo) {
-	if(equipo.equals(localNombre)) {
+	if (equipo.equals(localNombre)) {
 	    local.add(jugador);
+	} else {
+
+	    visitante.add(jugador);
 	}
-	
-	visitante.add(jugador);
-	
+
     }
 
     public String getGanador() {
 	int golesLocal = 0;
 	int golesVisita = 0;
 	Iterator<Gol> it = goles.iterator();
-	
-	while(it.hasNext()) {
-		Gol golAct = it.next();
-		if(golAct.getlado()=="local") {
-			golesLocal++;
-		}else {
-		    golesVisita++;
-		}
+
+	while (it.hasNext()) {
+	    Gol golAct = it.next();
+	    if (golAct.getlado() == "local") {
+		golesLocal++;
+	    } else {
+		golesVisita++;
+	    }
 	}
-	
-	if(golesLocal > golesVisita) {
+
+	if (golesLocal > golesVisita) {
 	    return localNombre;
 	}
-	
+
 	return visitanteNombre;
-	
+
     }
 
     public Integer getCantidadGoles() {
@@ -87,6 +87,8 @@ public class Partido {
 	ArrayList<Gol> golesPartido = new ArrayList<Gol>();
 	return golesPartido.addAll(goles);
     }
-    
 
+    public Integer GetCantidadJugadores() {
+	return local.size() + visitante.size();
+    }
 }

@@ -33,6 +33,20 @@ public class Tests {
     }
 
     @Test
+    public void queSePuedaAgregarUnJugadorAUnPartido() throws JugadorNoEncontradoException {
+	Torneo copaAmerica = new Torneo();
+
+	Integer numeroPartido = copaAmerica.crearPartido("Arentina", "Uruguay");
+	Jugador messi = new Jugador(5, "Lionel Messi", "Argentina", 10, "DEL");
+	
+
+	copaAmerica.agregarMiembro(messi);
+	copaAmerica.agregarAPartido(numeroPartido, messi, "Arentina");
+	
+	assertEquals(1, copaAmerica.getCantidadJugadoresEnPartido(numeroPartido),0.1);
+    }
+    
+    @Test
     public void queSePuedaJugarUnPartidoYAgregarAUnTorneo() {
 
 	Torneo copaAmerica = new Torneo();
@@ -85,6 +99,7 @@ public class Tests {
 	
 
 	copaAmerica.agregarMiembro(messi);
+	copaAmerica.agregarAPartido(numeroPartido, messi, "Arentina");
 	copaAmerica.anotarGol(numeroPartido, messi, "Argentina", 45);
 	assertEquals("Argentina", copaAmerica.ganadorPartido(numeroPartido));
 
@@ -99,6 +114,7 @@ public class Tests {
 	
 
 	copaAmerica.agregarMiembro(messi);
+	copaAmerica.agregarAPartido(numeroPartido, messi, "Arentina");
 	copaAmerica.anotarGol(numeroPartido, messi, "Argentina", 45);
 	assertNotNull(copaAmerica.getListaGoles(numeroPartido));
     }

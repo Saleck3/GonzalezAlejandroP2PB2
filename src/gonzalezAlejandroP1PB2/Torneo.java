@@ -53,8 +53,6 @@ public class Torneo{
 	
 	part.agregarJugador(jugador,equipo);
 	
-	
-	
     }
 
     public String ganadorPartido(Integer numeroPartido) {
@@ -70,6 +68,11 @@ public class Torneo{
     public Object getListaGoles(Integer numeroPartido) {
 	Partido part = partidos.get(numeroPartido);
 	return part.getListaGoles();
+    }
+
+    public Integer getCantidadJugadoresEnPartido(Integer numeroPartido) {
+	Partido part = partidos.get(numeroPartido);
+	return part.GetCantidadJugadores();
     }    
     
 
