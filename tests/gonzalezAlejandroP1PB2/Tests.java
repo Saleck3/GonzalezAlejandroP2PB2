@@ -23,13 +23,6 @@ public class Tests {
 
 	assertEquals(2, copaAmerica.getCantidadMiembros(), 0.1);
 
-	//torneo tiene que registrar goles con jugador y minuto realizado (número de partido, el número de camiseta, si es local o visitante y el minuto que se convirtió.)
-	//si el jugador no esta en el partido tiene que arrojar JugadorNoEncontradoException() 
-	//crear un metodo que diga quien gano o si fue empate
-	//obtener lista de goles en orden cronologico
-	//partidos tienen equipo local y visitante
-	//partido debe tener identificador unico
-
     }
 
     @Test
